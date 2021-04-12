@@ -27,5 +27,13 @@ namespace Practice2.Controllers
         {
             return studentsList;
         }
+        [HttpPost]
+        public Student CreateStudents([FromBody] string studentName)
+        {
+            return new Student()
+            {
+                Name = studentName
+            };
+        }
     }
 }
