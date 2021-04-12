@@ -8,32 +8,24 @@ using System.Threading.Tasks;
 namespace Practice2.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/students")]
     public class StudentsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        List<Student> studentsList = new List<Student>();
+        public StudentsController()
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<StudentsController> _logger;
-
-        public StudentsController(ILogger<StudentsController> logger)
-        {
-            _logger = logger;
+            for(int i=0;i<4;i++)
+                studentsList.Add(new Student());
+            studentsList[0].Name = "Ronaldo Hernandez";
+            studentsList[1].Name = "Vanesa Soliz";
+            studentsList[2].Name = "Sandra Villantino";
+            studentsList[3].Name = "Esteban Javerino";
         }
 
         [HttpGet]
-        public IEnumerable<Student> Get()
+        public List<Student> GetStudents()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Student
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return studentsList;
         }
     }
 }
