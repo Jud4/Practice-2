@@ -41,5 +41,11 @@ namespace Practice2.Controllers
             student.Name = "updated";
             return student;
         }
+        [HttpDelete]
+        public Student DeleteStudent([FromBody] Student student)
+        {
+            student.Name = "deleted";
+            return student;
+        }
     }
 }
